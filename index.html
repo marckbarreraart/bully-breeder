@@ -10,6 +10,7 @@
 body{min-height:100vh;padding:18px;background:linear-gradient(180deg,#fff4cc,#ffe0f1,#dff5ff);text-align:center;color:#222}
 h1{font-size:46px;color:#ff7800;text-shadow:3px 3px 0 #fff;margin-bottom:4px}
 .subtitle{font-weight:bold;color:#5b4b3b;margin-bottom:18px}
+.topActions{max-width:1250px;margin:0 auto 16px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1250px;margin:auto}
 .card{background:#fff;border:5px solid #fff;border-radius:28px;padding:14px;box-shadow:0 14px 28px rgba(0,0,0,.14)}
 .male{background:linear-gradient(#dff4ff,#fff)}
@@ -18,56 +19,120 @@ h1{font-size:46px;color:#ff7800;text-shadow:3px 3px 0 #fff;margin-bottom:4px}
 h2{font-size:28px;margin-bottom:10px}
 .stage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:22px;position:relative;overflow:hidden;border:4px solid #fff}
 .layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
-button{border:0;border-radius:999px;padding:14px 22px;font-size:16px;font-weight:900;color:#fff;cursor:pointer;margin:12px 4px 8px;box-shadow:0 6px 0 rgba(0,0,0,.2)}
+button{border:0;border-radius:999px;padding:14px 22px;font-size:16px;font-weight:900;color:#fff;cursor:pointer;margin:8px 4px;box-shadow:0 6px 0 rgba(0,0,0,.2)}
 button:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.2)}
+button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 0 rgba(0,0,0,.18)}
 .maleBtn{background:linear-gradient(#36b9ff,#0088dd)}
 .femaleBtn{background:linear-gradient(#ff72ba,#e83b8f)}
 .breedBtn{background:linear-gradient(#ff9f1c,#ff5c00);width:90%;font-size:19px}
 .saveBtn{background:linear-gradient(#35d07f,#11994e)}
 .clearBtn{background:linear-gradient(#777,#333)}
+.profileBtn{background:linear-gradient(#8e7cff,#5f45d9)}
+.homeBtn{background:linear-gradient(#ffc83d,#ff8a00)}
+.renameBtn{background:linear-gradient(#7ddfff,#229ad6)}
+.useBtn{background:linear-gradient(#36d399,#079669)}
+.deleteBtn{background:linear-gradient(#ff5f6d,#cc1730)}
 .info{margin-top:10px;background:#fff;border-radius:18px;padding:12px;font-size:13px;line-height:1.55;text-align:left;box-shadow:inset 0 -4px 0 rgba(0,0,0,.05)}
 .badge{display:inline-block;padding:5px 12px;border-radius:999px;color:#fff;font-size:12px;font-weight:900;margin-bottom:8px}
 .badgeMale{background:#0088dd}.badgeFemale{background:#e83b8f}.badgeOffspring{background:#ff7800}
 .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed rgba(0,0,0,.12);padding:3px 0}
 .row span{font-weight:bold;text-align:right}
 .inheritance{margin-top:10px;padding:9px;background:#fff1ba;border-radius:14px;text-align:center;font-weight:900;color:#8a4a00}
+.nameLine{font-weight:900;font-size:18px;margin:6px 0 8px;color:#333}
+.cardActions{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:4px}
 .kennel{max-width:1250px;margin:24px auto 0;background:rgba(255,255,255,.75);border:4px solid #fff;border-radius:28px;padding:16px;box-shadow:0 14px 28px rgba(0,0,0,.12)}
 .kennel h2{color:#ff7800}
-.kennelGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:12px}
+.kennelGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:12px}
 .kennelDog{background:#fff;border-radius:18px;padding:10px;box-shadow:0 8px 16px rgba(0,0,0,.1)}
 .kennelStage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:14px;position:relative;overflow:hidden}
 .kennelName{font-weight:900;margin-top:8px;color:#333}
-@media(max-width:950px){.grid{grid-template-columns:1fr;max-width:520px}h1{font-size:36px}}
+.kennelActions{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px}
+.modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999;padding:18px}
+.modal{width:min(760px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#fff,#fff8df);border:5px solid #fff;border-radius:30px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative}
+.closeBtn{position:absolute;right:12px;top:10px;background:linear-gradient(#777,#333);padding:8px 12px;margin:0}
+.profileLayout{display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start;margin-top:12px}
+.profileStage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:22px;position:relative;overflow:hidden;border:4px solid #fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.05)}
+.statsBox{background:#fff;border-radius:18px;padding:12px;text-align:left;box-shadow:inset 0 -4px 0 rgba(0,0,0,.05)}
+.stat{margin:9px 0}
+.statTop{display:flex;justify-content:space-between;font-size:13px;font-weight:900;margin-bottom:4px}
+.bar{height:14px;border-radius:999px;background:#eee;overflow:hidden;border:2px solid #fff;box-shadow:inset 0 2px 5px rgba(0,0,0,.12)}
+.barFill{height:100%;width:50%;border-radius:999px;background:linear-gradient(90deg,#ff9f1c,#35d07f)}
+.homePanel{max-width:1250px;margin:24px auto 0;background:linear-gradient(180deg,#fffbe6,#ffffff);border:5px solid #fff;border-radius:32px;padding:16px;box-shadow:0 14px 28px rgba(0,0,0,.14);display:none}
+.homePanel.active{display:block}
+.homeGrid{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
+.homeStageWrap{background:linear-gradient(180deg,#dff5ff,#fff4cc);border:4px solid #fff;border-radius:28px;padding:12px;box-shadow:inset 0 -5px 0 rgba(0,0,0,.06)}
+.homeStage{width:100%;aspect-ratio:1/1;background:radial-gradient(circle at center,#fff 0%,#fff8d5 55%,#ffd7ed 100%);border-radius:24px;position:relative;overflow:hidden;border:4px solid #fff}
+.homeStats{background:#fff;border-radius:24px;padding:14px;text-align:left;box-shadow:0 8px 16px rgba(0,0,0,.08)}
+.homeActions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.feedBtn{background:linear-gradient(#ffcf4d,#ff8a00)}
+.bathBtn{background:linear-gradient(#61d6ff,#0aa5e8)}
+.playBtn{background:linear-gradient(#ff7ac8,#e83b8f)}
+.trainBtn{background:linear-gradient(#9d8cff,#5f45d9)}
+.sleepBtn{background:linear-gradient(#6b7280,#374151)}
+.homeEmpty{font-weight:900;color:#6b4c00;background:#fff7ca;border-radius:18px;padding:18px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;border-radius:999px;padding:12px 18px;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.25);display:none;z-index:1000}
+@media(max-width:950px){
+  .grid{grid-template-columns:1fr;max-width:520px}
+  .homeGrid,.profileLayout{grid-template-columns:1fr}
+  .homeGrid{max-width:520px;margin:auto}
+  h1{font-size:36px}
+}
 </style>
 </head>
 
 <body>
 
 <h1>🐾 Bully Breeder 🐾</h1>
-<div class="subtitle">Create your male, create your female, then breed an offspring.</div>
+<div class="subtitle">Create your male, create your female, breed offspring, save them, and raise them in Home Mode.</div>
+
+<div class="topActions">
+  <button class="homeBtn" onclick="toggleHomeMode()">🏠 Home Mode</button>
+  <button class="profileBtn" onclick="openDogProfile(offspringDog,'Offspring')">👁 View Offspring</button>
+</div>
 
 <div class="grid">
   <div class="card male">
     <h2>♂ Male</h2>
     <div class="stage" id="maleStage"></div>
+    <div class="nameLine" id="maleNameLine">Male</div>
     <button class="maleBtn" onclick="createMale()">🎲 Random Male</button>
+    <div class="cardActions">
+      <button class="smallBtn renameBtn" onclick="renameCurrentDog('male')">✏️ Rename Male</button>
+      <button class="smallBtn profileBtn" onclick="openDogProfile(maleDog,'Male')">👁 Profile</button>
+    </div>
     <div class="info" id="maleInfo"></div>
   </div>
 
   <div class="card female">
     <h2>♀ Female</h2>
     <div class="stage" id="femaleStage"></div>
+    <div class="nameLine" id="femaleNameLine">Female</div>
     <button class="femaleBtn" onclick="createFemale()">🎲 Random Female</button>
+    <div class="cardActions">
+      <button class="smallBtn renameBtn" onclick="renameCurrentDog('female')">✏️ Rename Female</button>
+      <button class="smallBtn profileBtn" onclick="openDogProfile(femaleDog,'Female')">👁 Profile</button>
+    </div>
     <div class="info" id="femaleInfo"></div>
   </div>
 
   <div class="card offspring">
     <h2>⚡ Offspring</h2>
     <div class="stage" id="offspringStage"></div>
+    <div class="nameLine" id="offspringNameLine">No offspring yet</div>
     <button class="breedBtn" onclick="breedOffspring()">❤️ Breed Offspring</button>
     <button class="saveBtn" onclick="saveOffspring()">💾 Save to Kennel</button>
+    <div class="cardActions">
+      <button class="smallBtn renameBtn" onclick="renameCurrentDog('offspring')">✏️ Rename</button>
+      <button class="smallBtn profileBtn" onclick="openDogProfile(offspringDog,'Offspring')">👁 Profile</button>
+    </div>
     <div class="info" id="offspringInfo">Create both parents first.</div>
   </div>
+</div>
+
+<div class="homePanel" id="homePanel">
+  <h2>🏠 Home Mode</h2>
+  <div class="subtitle">Pick a saved dog from My Kennel, then feed, bathe, play, train, or let it sleep.</div>
+  <div id="homeContent"></div>
 </div>
 
 <div class="kennel">
@@ -75,6 +140,22 @@ button:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.2)}
   <button class="clearBtn" onclick="clearKennel()">🗑 Clear Kennel</button>
   <div class="kennelGrid" id="kennelGrid"></div>
 </div>
+
+<div class="modalBackdrop" id="profileModal">
+  <div class="modal">
+    <button class="closeBtn smallBtn" onclick="closeProfile()">✖</button>
+    <h2 id="profileTitle">Dog Profile</h2>
+    <div class="profileLayout">
+      <div class="profileStage" id="profileStage"></div>
+      <div>
+        <div class="info" id="profileInfo"></div>
+        <div class="statsBox" id="profileStats"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 const colors=["black","chocolate","cream","grey","orange","red","white"];
@@ -94,21 +175,46 @@ const prettyNames={
 "snout":"Classic Muzzle","snout-colmillos":"Fang Bite","snout-smirk":"Boss Smirk","snout-tongue":"Tongue Out",
 "mark-body-1":"Tiny Chest Spark","mark-body-2":"White Armor","mark-body-3":"War Chest","mark-body-4":"Royal Socks","mark-body-5":"Ghost Blanket",
 "mark-head-1":"Blade Stripe","mark-head-2":"Panda Mask","mark-head-3":"Half Moon","mark-head-4":"Split Face","mark-head-5":"Shield Mark","mark-head-6":"Bull Crown","mark-head-7":"Nose Blaze",
-"mark-tail":"White Tip"
+"mark-tail":"White Tip",
+"male":"Male","female":"Female"
 };
 
+const DEFAULT_STATS={hunger:70,happiness:70,hygiene:70,energy:70,strength:25};
 let maleDog=null,femaleDog=null,offspringDog=null;
+let homeDogId=null;
 
 function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
 function clean(v){if(!v)return"none";return prettyNames[v]||String(v).replaceAll("-"," ")}
+function clamp(n){return Math.max(0,Math.min(100,Number(n)||0))}
 function inherit(m,f,opts){const r=Math.random();if(r<.45)return m;if(r<.90)return f;return pick(opts)}
+function dogId(){return "dog-"+Date.now()+"-"+Math.floor(Math.random()*999999)}
+function defaultStats(){return {...DEFAULT_STATS}}
+function ensureDog(dog){
+  if(!dog)return null;
+  if(!dog.id)dog.id=dogId();
+  if(!dog.name)dog.name=dog.gender==="female"?"Female":"Male";
+  if(!dog.stats)dog.stats=defaultStats();
+  dog.stats={
+    hunger:clamp(dog.stats.hunger ?? 70),
+    happiness:clamp(dog.stats.happiness ?? 70),
+    hygiene:clamp(dog.stats.hygiene ?? 70),
+    energy:clamp(dog.stats.energy ?? 70),
+    strength:clamp(dog.stats.strength ?? 25)
+  };
+  return dog;
+}
+function statLabel(key){
+  return {hunger:"Hunger",happiness:"Happiness",hygiene:"Hygiene",energy:"Energy",strength:"Strength"}[key]||key;
+}
 
-function createRandomDog(gender){
-return{gender,color:pick(colors),earType:pick(earTypes),eye:pick(eyes),nose:pick(noses),snout:pick(snouts),markBody:pick(markBodies),markHead:pick(markHeads),markTail:pick(markTails)};
+function createRandomDog(gender,name){
+return ensureDog({id:dogId(),name:name||(gender==="male"?"Male":"Female"),gender,color:pick(colors),earType:pick(earTypes),eye:pick(eyes),nose:pick(noses),snout:pick(snouts),markBody:pick(markBodies),markHead:pick(markHeads),markTail:pick(markTails),stats:defaultStats()});
 }
 
 function createOffspring(male,female){
-return{
+return ensureDog({
+id:dogId(),
+name:"Offspring",
 gender:pick(["male","female"]),
 color:inherit(male.color,female.color,colors),
 earType:inherit(male.earType,female.earType,earTypes),
@@ -117,23 +223,28 @@ nose:inherit(male.nose,female.nose,noses),
 snout:inherit(male.snout,female.snout,snouts),
 markBody:inherit(male.markBody,female.markBody,markBodies),
 markHead:inherit(male.markHead,female.markHead,markHeads),
-markTail:inherit(male.markTail,female.markTail,markTails)
-};
+markTail:inherit(male.markTail,female.markTail,markTails),
+stats:defaultStats()
+});
 }
 
 function addLayer(stageId,folder,fileName){
 if(!fileName)return;
+const stage=document.getElementById(stageId);
+if(!stage)return;
 const img=document.createElement("img");
 img.className="layer";
 img.src=`${folder}/${fileName}.png`;
 img.onerror=()=>{img.style.display="none"};
-document.getElementById(stageId).appendChild(img);
+stage.appendChild(img);
 }
 
 function renderDog(stageId,dog){
 const stage=document.getElementById(stageId);
+if(!stage)return;
 stage.innerHTML="";
 if(!dog)return;
+ensureDog(dog);
 const c=dog.color;
 addLayer(stageId,"tail",`tail-${c}`);
 addLayer(stageId,"tail",dog.markTail);
@@ -148,8 +259,11 @@ addLayer(stageId,"nose",dog.nose);
 }
 
 function infoHTML(dog,label,badge){
+if(!dog)return"";
+ensureDog(dog);
 return`
 <div class="badge ${badge}">${label}</div>
+<div class="row"><strong>Name</strong><span>${dog.name}</span></div>
 <div class="row"><strong>Gender</strong><span>${clean(dog.gender)}</span></div>
 <div class="row"><strong>Color</strong><span>${clean(dog.color)}</span></div>
 <div class="row"><strong>Ears</strong><span>${clean(dog.earType)}</span></div>
@@ -161,61 +275,326 @@ return`
 <div class="row"><strong>Tail Mark</strong><span>${clean(dog.markTail)}</span></div>`;
 }
 
-function createMale(){
-maleDog=createRandomDog("male");
+function statsHTML(dog){
+if(!dog)return"<strong>No stats yet.</strong>";
+ensureDog(dog);
+return Object.keys(DEFAULT_STATS).map(k=>`
+<div class="stat">
+  <div class="statTop"><span>${statLabel(k)}</span><span>${dog.stats[k]}/100</span></div>
+  <div class="bar"><div class="barFill" style="width:${dog.stats[k]}%"></div></div>
+</div>`).join("");
+}
+
+function saveBreederState(){
+localStorage.setItem("bullyBreederState",JSON.stringify({maleDog,femaleDog,offspringDog,homeDogId}));
+}
+
+function loadBreederState(){
+const saved=JSON.parse(localStorage.getItem("bullyBreederState")||"null");
+if(saved){
+  maleDog=saved.maleDog?ensureDog(saved.maleDog):null;
+  femaleDog=saved.femaleDog?ensureDog(saved.femaleDog):null;
+  offspringDog=saved.offspringDog?ensureDog(saved.offspringDog):null;
+  homeDogId=saved.homeDogId||null;
+}
+}
+
+function renderMain(){
+maleDog=ensureDog(maleDog);
+femaleDog=ensureDog(femaleDog);
+offspringDog=ensureDog(offspringDog);
+
 renderDog("maleStage",maleDog);
-maleInfo.innerHTML=infoHTML(maleDog,"Male","badgeMale");
+renderDog("femaleStage",femaleDog);
+renderDog("offspringStage",offspringDog);
+
+document.getElementById("maleNameLine").textContent=maleDog?maleDog.name:"Male";
+document.getElementById("femaleNameLine").textContent=femaleDog?femaleDog.name:"Female";
+document.getElementById("offspringNameLine").textContent=offspringDog?offspringDog.name:"No offspring yet";
+
+document.getElementById("maleInfo").innerHTML=maleDog?infoHTML(maleDog,"Male","badgeMale"):"";
+document.getElementById("femaleInfo").innerHTML=femaleDog?infoHTML(femaleDog,"Female","badgeFemale"):"";
+document.getElementById("offspringInfo").innerHTML=offspringDog?infoHTML(offspringDog,"Offspring","badgeOffspring")+`<div class="inheritance">45% Male / 45% Female / 10% Random</div>`:"Create both parents first.";
+saveBreederState();
+}
+
+function createMale(){
+maleDog=createRandomDog("male","Male");
+renderMain();
+showToast("New male created.");
 }
 
 function createFemale(){
-femaleDog=createRandomDog("female");
-renderDog("femaleStage",femaleDog);
-femaleInfo.innerHTML=infoHTML(femaleDog,"Female","badgeFemale");
+femaleDog=createRandomDog("female","Female");
+renderMain();
+showToast("New female created.");
 }
 
 function breedOffspring(){
 if(!maleDog||!femaleDog){offspringInfo.innerHTML="Create both parents first.";return}
 offspringDog=createOffspring(maleDog,femaleDog);
-renderDog("offspringStage",offspringDog);
-offspringInfo.innerHTML=infoHTML(offspringDog,"Offspring","badgeOffspring")+`<div class="inheritance">45% Male / 45% Female / 10% Random</div>`;
+renderMain();
+showToast("Offspring created.");
 }
 
-function getKennel(){return JSON.parse(localStorage.getItem("bullyKennel")||"[]")}
-function setKennel(k){localStorage.setItem("bullyKennel",JSON.stringify(k))}
+function renameCurrentDog(type){
+let dog=null;
+if(type==="male")dog=maleDog;
+if(type==="female")dog=femaleDog;
+if(type==="offspring")dog=offspringDog;
+if(!dog){alert("No dog here yet.");return}
+const newName=prompt("New name:",dog.name||"Dog");
+if(!newName)return;
+dog.name=newName.trim();
+renderMain();
+renderHome();
+showToast("Name updated.");
+}
+
+function getKennel(){
+const kennel=JSON.parse(localStorage.getItem("bullyKennel")||"[]");
+return kennel.map(d=>ensureDog(d));
+}
+function setKennel(k){
+localStorage.setItem("bullyKennel",JSON.stringify(k.map(d=>ensureDog(d))));
+}
 
 function saveOffspring(){
 if(!offspringDog){alert("Breed an offspring first.");return}
-const name=prompt("Name this offspring:","Offspring "+(getKennel().length+1));
+const name=prompt("Name this offspring:",offspringDog.name&&offspringDog.name!=="Offspring"?offspringDog.name:"Offspring "+(getKennel().length+1));
 if(!name)return;
 const kennel=getKennel();
-kennel.push({...offspringDog,name});
+const savedDog=JSON.parse(JSON.stringify(ensureDog(offspringDog)));
+savedDog.id=dogId();
+savedDog.name=name.trim();
+kennel.push(savedDog);
 setKennel(kennel);
 renderKennel();
+showToast("Saved to kennel.");
 }
 
 function renderKennel(){
 const grid=document.getElementById("kennelGrid");
 grid.innerHTML="";
 const kennel=getKennel();
-if(kennel.length===0){grid.innerHTML="<strong>No saved dogs yet.</strong>";return}
+if(kennel.length===0){grid.innerHTML="<strong>No saved dogs yet.</strong>";renderHome();return}
 kennel.forEach((dog,i)=>{
 const box=document.createElement("div");
 box.className="kennelDog";
-box.innerHTML=`<div class="kennelStage" id="kennelDog${i}"></div><div class="kennelName">${dog.name}</div><small>${clean(dog.color)} • ${clean(dog.eye)}</small>`;
+box.innerHTML=`
+<div class="kennelStage" id="kennelDog${i}"></div>
+<div class="kennelName">${dog.name}</div>
+<small>${clean(dog.gender)} • ${clean(dog.color)} • ${clean(dog.eye)}</small>
+<div class="kennelActions">
+  <button class="smallBtn profileBtn" onclick="openKennelProfile(${i})">👁 View</button>
+  <button class="smallBtn renameBtn" onclick="renameSavedDog(${i})">✏️ Rename</button>
+  <button class="smallBtn maleBtn" onclick="setSavedAsMale(${i})">♂ Male</button>
+  <button class="smallBtn femaleBtn" onclick="setSavedAsFemale(${i})">♀ Female</button>
+  <button class="smallBtn homeBtn" onclick="setHomeDog(${i})">🏠 Home</button>
+  <button class="smallBtn deleteBtn" onclick="deleteSavedDog(${i})">🗑</button>
+</div>`;
 grid.appendChild(box);
 renderDog(`kennelDog${i}`,dog);
 });
+renderHome();
+}
+
+function renameSavedDog(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+const newName=prompt("New saved dog name:",dog.name||"Dog");
+if(!newName)return;
+dog.name=newName.trim();
+setKennel(kennel);
+renderKennel();
+showToast("Saved dog renamed.");
+}
+
+function setSavedAsMale(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+maleDog=JSON.parse(JSON.stringify(dog));
+maleDog.gender="male";
+renderMain();
+showToast(`${maleDog.name} set as Male.`);
+}
+
+function setSavedAsFemale(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+femaleDog=JSON.parse(JSON.stringify(dog));
+femaleDog.gender="female";
+renderMain();
+showToast(`${femaleDog.name} set as Female.`);
+}
+
+function setHomeDog(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+homeDogId=dog.id;
+saveBreederState();
+document.getElementById("homePanel").classList.add("active");
+renderHome();
+showToast(`${dog.name} is now in Home Mode.`);
+}
+
+function deleteSavedDog(i){
+const kennel=getKennel();
+if(!kennel[i])return;
+if(!confirm("Delete this dog from kennel?"))return;
+if(homeDogId===kennel[i].id)homeDogId=null;
+kennel.splice(i,1);
+setKennel(kennel);
+saveBreederState();
+renderKennel();
+showToast("Dog deleted.");
 }
 
 function clearKennel(){
 if(confirm("Clear all saved dogs?")){
 localStorage.removeItem("bullyKennel");
+homeDogId=null;
+saveBreederState();
 renderKennel();
+showToast("Kennel cleared.");
 }
 }
 
-createMale();
-createFemale();
+function findHomeDog(){
+const kennel=getKennel();
+if(!homeDogId&&kennel[0])homeDogId=kennel[0].id;
+return kennel.find(d=>d.id===homeDogId)||null;
+}
+
+function saveHomeDog(dog){
+const kennel=getKennel();
+const idx=kennel.findIndex(d=>d.id===dog.id);
+if(idx>=0){
+  kennel[idx]=ensureDog(dog);
+  setKennel(kennel);
+}
+saveBreederState();
+}
+
+function toggleHomeMode(){
+const panel=document.getElementById("homePanel");
+panel.classList.toggle("active");
+renderHome();
+if(panel.classList.contains("active"))panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function renderHome(){
+const content=document.getElementById("homeContent");
+if(!content)return;
+const dog=findHomeDog();
+if(!dog){
+  content.innerHTML=`<div class="homeEmpty">No saved dogs yet. Breed an offspring and save it to My Kennel first.</div>`;
+  return;
+}
+content.innerHTML=`
+<div class="homeGrid">
+  <div class="homeStageWrap">
+    <h3>${dog.name}</h3>
+    <div class="homeStage" id="homeStage"></div>
+  </div>
+  <div class="homeStats">
+    <h3>Stats</h3>
+    ${statsHTML(dog)}
+    <div class="homeActions">
+      <button class="feedBtn" onclick="careAction('feed')">🍖 Feed</button>
+      <button class="bathBtn" onclick="careAction('bath')">🛁 Bath</button>
+      <button class="playBtn" onclick="careAction('play')">🎾 Play</button>
+      <button class="trainBtn" onclick="careAction('train')">🏋️ Train</button>
+      <button class="sleepBtn" onclick="careAction('sleep')">😴 Sleep</button>
+    </div>
+    <div class="info" style="text-align:center;margin-top:12px">
+      Tip: stats are saved in localStorage. If cache/browser data gets deleted, kennel and stats can disappear.
+    </div>
+  </div>
+</div>`;
+renderDog("homeStage",dog);
+}
+
+function careAction(action){
+const dog=findHomeDog();
+if(!dog)return;
+ensureDog(dog);
+if(action==="feed"){
+  dog.stats.hunger=clamp(dog.stats.hunger+20);
+  dog.stats.happiness=clamp(dog.stats.happiness+5);
+  dog.stats.hygiene=clamp(dog.stats.hygiene-4);
+  showToast("Fed! Hunger went up.");
+}
+if(action==="bath"){
+  dog.stats.hygiene=clamp(dog.stats.hygiene+25);
+  dog.stats.happiness=clamp(dog.stats.happiness-3);
+  showToast("Clean bully!");
+}
+if(action==="play"){
+  dog.stats.happiness=clamp(dog.stats.happiness+20);
+  dog.stats.energy=clamp(dog.stats.energy-12);
+  dog.stats.hunger=clamp(dog.stats.hunger-8);
+  showToast("Play time!");
+}
+if(action==="train"){
+  dog.stats.strength=clamp(dog.stats.strength+12);
+  dog.stats.energy=clamp(dog.stats.energy-18);
+  dog.stats.hunger=clamp(dog.stats.hunger-10);
+  dog.stats.happiness=clamp(dog.stats.happiness+4);
+  showToast("Training complete.");
+}
+if(action==="sleep"){
+  dog.stats.energy=clamp(dog.stats.energy+28);
+  dog.stats.hunger=clamp(dog.stats.hunger-6);
+  dog.stats.hygiene=clamp(dog.stats.hygiene-3);
+  showToast("Rested up.");
+}
+saveHomeDog(dog);
+renderKennel();
+renderHome();
+}
+
+function openDogProfile(dog,label){
+if(!dog){alert("No dog to view yet.");return}
+ensureDog(dog);
+document.getElementById("profileModal").style.display="flex";
+document.getElementById("profileTitle").textContent=`${dog.name} — ${label}`;
+renderDog("profileStage",dog);
+document.getElementById("profileInfo").innerHTML=infoHTML(dog,label,label==="Female"?"badgeFemale":label==="Male"?"badgeMale":"badgeOffspring");
+document.getElementById("profileStats").innerHTML=`<h3>Stats</h3>${statsHTML(dog)}`;
+}
+
+function openKennelProfile(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+openDogProfile(dog,"Kennel Dog");
+}
+
+function closeProfile(){
+document.getElementById("profileModal").style.display="none";
+}
+
+function showToast(msg){
+const toast=document.getElementById("toast");
+toast.textContent=msg;
+toast.style.display="block";
+clearTimeout(showToast.timer);
+showToast.timer=setTimeout(()=>toast.style.display="none",1800);
+}
+
+document.getElementById("profileModal").addEventListener("click",function(e){
+if(e.target===this)closeProfile();
+});
+
+loadBreederState();
+if(!maleDog)maleDog=createRandomDog("male","Male");
+if(!femaleDog)femaleDog=createRandomDog("female","Female");
+renderMain();
 renderKennel();
 </script>
 </body>
