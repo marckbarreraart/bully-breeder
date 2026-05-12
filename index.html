@@ -394,8 +394,7 @@ box.innerHTML=`
 <div class="kennelActions">
   <button class="smallBtn profileBtn" onclick="openKennelProfile(${i})">👁 View</button>
   <button class="smallBtn renameBtn" onclick="renameSavedDog(${i})">✏️ Rename</button>
-  <button class="smallBtn maleBtn" onclick="setSavedAsMale(${i})">♂ Male</button>
-  <button class="smallBtn femaleBtn" onclick="setSavedAsFemale(${i})">♀ Female</button>
+  <button class="smallBtn useBtn" onclick="setSavedAsParent(${i})">👑 Use as Parent</button>
   <button class="smallBtn homeBtn" onclick="setHomeDog(${i})">🏠 Home</button>
   <button class="smallBtn deleteBtn" onclick="deleteSavedDog(${i})">🗑</button>
 </div>`;
@@ -435,6 +434,24 @@ femaleDog=JSON.parse(JSON.stringify(dog));
 femaleDog.gender="female";
 renderMain();
 showToast(`${femaleDog.name} set as Female.`);
+}
+
+function setSavedAsParent(i){
+const kennel=getKennel();
+const dog=kennel[i];
+if(!dog)return;
+
+if(dog.gender==="male"){
+  maleDog=JSON.parse(JSON.stringify(dog));
+  maleDog.gender="male";
+  renderMain();
+  showToast(`${maleDog.name} set as Male parent.`);
+}else{
+  femaleDog=JSON.parse(JSON.stringify(dog));
+  femaleDog.gender="female";
+  renderMain();
+  showToast(`${femaleDog.name} set as Female parent.`);
+}
 }
 
 function setHomeDog(i){
