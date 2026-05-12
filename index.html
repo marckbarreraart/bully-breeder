@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bully Breeder Demo</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    margin-top: 20px;
+  }
+
+  .stage {
+    width: 90vw;
+    max-width: 700px;
+    aspect-ratio: 1 / 1;
+    margin: 20px auto;
+    background: #f5f5f5;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+  }
+
+  .layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  button {
+    background: #ff8c00;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: #ffaa33;
+  }
+
+  .info {
+    margin: 15px auto;
+    max-width: 700px;
+    background: #222;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>🔥 Bully Breeder Demo 🔥</h1>
+
+<div class="stage" id="dogStage"></div>
+
+<button onclick="generateDog()">Random Dog</button>
+
+<div class="info" id="dogInfo">
+  Click Random Dog
+</div>
+
+<script>
+  const colors = [
+    "black",
+    "chocolate",
+    "cream",
+    "grey",
+    "orange",
+    "red",
+    "white"
+  ];
+
+  const eyes = [
+    "eyes-blue",
+    "eyes-green",
+    "eyes-orange",
+    "eyes-red",
+    "eyes-yellow"
+  ];
+
+  const noses = [
+    "nose-black",
+    "nose-chocolate",
+    "nose-grey",
+    "nose-pink",
+    "nose-red"
+  ];
+
+  const snouts = [
+    "snout",
+    "snout-colmillos",
+    "snout-smirk",
+    "snout-tongue"
+  ];
+
+  const markBodies = [
+    null,
+    "mark-body-1",
+    "mark-body-2",
+    "mark-body-3",
+    "mark-body-4",
+    "mark-body-5"
+  ];
+
+  const markHeads = [
+    null,
+    "mark-head-1",
+    "mark-head-2",
+    "mark-head-3",
+    "mark-head-4",
+    "mark-head-5",
+    "mark-head-6",
+    "mark-head-7"
+  ];
+
+  const markTails = [
+    null,
+    "mark-tail"
+  ];
+
+  const earTypes = [
+    "ears",
+    "cropped-ears"
+  ];
+
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function addLayer(folder, fileName) {
+    if (!fileName) return;
+
+    const img = document.createElement("img");
+    img.className = "layer";
+    img.src = `${folder}/${fileName}.png`;
+    img.alt = fileName;
+
+    img.onerror = () => {
+      console.warn("Missing layer:", img.src);
+      img.style.display = "none";
+    };
+
+    document.getElementById("dogStage").appendChild(img);
+  }
+
+  function generateDog() {
+    const stage = document.getElementById("dogStage");
+    stage.innerHTML = "";
+
+    const color = pick(colors);
+    const earType = pick(earTypes);
+    const eye = pick(eyes);
+    const nose = pick(noses);
+    const snout = pick(snouts);
+    const markBody = pick(markBodies);
+    const markHead = pick(markHeads);
+    const markTail = pick(markTails);
+
+    // Orden de capas
+    addLayer("body", `body-${color}`);
+    addLayer("tail", `tail-${color}`);
+    addLayer("tail", markTail);
+
+    addLayer("head", `head-${color}`);
+
+    if (earType === "ears") {
+      addLayer("ears", `ears-${color}`);
+    } else {
+      addLayer("cropped ears", `cropped-ears-${color}`);
+    }
+
+    addLayer("mark body", markBody);
+    addLayer("mark head", markHead);
+
+    addLayer("snout", snout);
+    addLayer("nose", nose);
+    addLayer("eyes", eye);
+
+    document.getElementById("dogInfo").innerHTML = `
+      <strong>Color:</strong> ${color}<br>
+      <strong>Ears:</strong> ${earType}<br>
+      <strong>Eyes:</strong> ${eye}<br>
+      <strong>Nose:</strong> ${nose}<br>
+      <strong>Snout:</strong> ${snout}<br>
+      <strong>Body Mark:</strong> ${markBody || "none"}<br>
+      <strong>Head Mark:</strong> ${markHead || "none"}<br>
+      <strong>Tail Mark:</strong> ${markTail || "none"}
+    `;
+  }
+
+  generateDog();
+</script>
+
+</body>
+</html>
