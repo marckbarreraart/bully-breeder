@@ -46,6 +46,8 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
 .kennelDog{background:#fff;border-radius:18px;padding:10px;box-shadow:0 8px 16px rgba(0,0,0,.1)}
 .kennelStage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:14px;position:relative;overflow:hidden}
 .kennelName{font-weight:900;margin-top:8px;color:#333}
+.sexMale{color:#0088dd;font-weight:900}
+.sexFemale{color:#e83b8f;font-weight:900}
 .kennelActions{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px}
 .modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999;padding:18px}
 .modal{width:min(760px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#fff,#fff8df);border:5px solid #fff;border-radius:30px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative}
@@ -333,8 +335,9 @@ showToast("New female created.");
 function breedOffspring(){
 if(!maleDog||!femaleDog){offspringInfo.innerHTML="Create both parents first.";return}
 offspringDog=createOffspring(maleDog,femaleDog);
+offspringDog.name=offspringDog.gender==="male"?"Male Offspring":"Female Offspring";
 renderMain();
-showToast("Offspring created.");
+showToast(`${offspringDog.name} created.`);
 }
 
 function renameCurrentDog(type){
@@ -361,16 +364,19 @@ localStorage.setItem("bullyKennel",JSON.stringify(k.map(d=>ensureDog(d))));
 
 function saveOffspring(){
 if(!offspringDog){alert("Breed an offspring first.");return}
-const name=prompt("Name this offspring:",offspringDog.name&&offspringDog.name!=="Offspring"?offspringDog.name:"Offspring "+(getKennel().length+1));
-if(!name)return;
 const kennel=getKennel();
 const savedDog=JSON.parse(JSON.stringify(ensureDog(offspringDog)));
 savedDog.id=dogId();
-savedDog.name=name.trim();
+
+const sexName=savedDog.gender==="male"?"Male":"Female";
+const count=kennel.length+1;
+savedDog.name=savedDog.name&&savedDog.name!=="Offspring"?savedDog.name:`${sexName} Offspring ${count}`;
+
 kennel.push(savedDog);
 setKennel(kennel);
 renderKennel();
-showToast("Saved to kennel.");
+saveBreederState();
+showToast(`${savedDog.name} saved to kennel.`);
 }
 
 function renderKennel(){
@@ -384,7 +390,7 @@ box.className="kennelDog";
 box.innerHTML=`
 <div class="kennelStage" id="kennelDog${i}"></div>
 <div class="kennelName">${dog.name}</div>
-<small>${clean(dog.gender)} • ${clean(dog.color)} • ${clean(dog.eye)}</small>
+<small>${dog.gender==="male"?"♂ Male":"♀ Female"} • ${clean(dog.color)} • ${clean(dog.eye)}</small>
 <div class="kennelActions">
   <button class="smallBtn profileBtn" onclick="openKennelProfile(${i})">👁 View</button>
   <button class="smallBtn renameBtn" onclick="renameSavedDog(${i})">✏️ Rename</button>
