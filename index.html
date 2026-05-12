@@ -407,8 +407,13 @@ addLayer(stageId,"nose",dog.nose);
 }
 
 function clean(value){
+function clean(value){
 
 if(!value)return"none";
+
+if(prettyNames[value]){
+return prettyNames[value];
+}
 
 return value.replaceAll("-"," ");
 
