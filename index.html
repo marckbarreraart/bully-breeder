@@ -413,7 +413,37 @@ if(!value)return"none";
 return value.replaceAll("-"," ");
 
 }
+const prettyNames = {
 
+"mark-head-1":"Split Face",
+"mark-head-2":"Panda Eyes",
+"mark-head-3":"Cyclops Patch",
+"mark-head-4":"Half Mask",
+"mark-head-5":"Warrior Mark",
+"mark-head-6":"Bull Stripe",
+"mark-head-7":"Bone Nose",
+
+"mark-body-1":"Chest Patch",
+"mark-body-2":"Heavy Blanket",
+"mark-body-3":"War Paint",
+"mark-body-4":"Front Socks",
+"mark-body-5":"Ghost Chest",
+
+"mark-tail":"White Tip",
+
+"snout-colmillos":"Fangs",
+"snout-smirk":"Smirk",
+"snout-tongue":"Tongue",
+
+"cropped-ears":"Cropped Ears",
+
+"eyes-blue":"Blue Eyes",
+"eyes-green":"Green Eyes",
+"eyes-red":"Red Eyes",
+"eyes-yellow":"Yellow Eyes",
+"eyes-orange":"Orange Eyes"
+
+};
 function infoHTML(dog,label,badgeClass){
 
 return`
