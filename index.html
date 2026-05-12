@@ -176,24 +176,41 @@
     const markTail = pick(markTails);
 
     // Orden de capas
-    addLayer("body", `body-${color}`);
-    addLayer("tail", `tail-${color}`);
-    addLayer("tail", markTail);
+   // ORDEN CORRECTO
 
-    addLayer("head", `head-${color}`);
+// 1
+addLayer("tail", `tail-${color}`);
 
-    if (earType === "ears") {
-      addLayer("ears", `ears-${color}`);
-    } else {
-      addLayer("cropped ears", `cropped-ears-${color}`);
-    }
+// 2
+addLayer("tail", markTail);
 
-    addLayer("mark body", markBody);
-    addLayer("mark head", markHead);
+// 3
+addLayer("body", `body-${color}`);
 
-    addLayer("snout", snout);
-    addLayer("nose", nose);
-    addLayer("eyes", eye);
+// 4
+addLayer("mark body", markBody);
+
+// 5
+if (earType === "ears") {
+  addLayer("ears", `ears-${color}`);
+} else {
+  addLayer("cropped ears", `cropped-ears-${color}`);
+}
+
+// 6
+addLayer("head", `head-${color}`);
+
+// 7
+addLayer("mark head", markHead);
+
+// 8
+addLayer("eyes", eye);
+
+// 9
+addLayer("snout", snout);
+
+// 10
+addLayer("nose", nose);
 
     document.getElementById("dogInfo").innerHTML = `
       <strong>Color:</strong> ${color}<br>
