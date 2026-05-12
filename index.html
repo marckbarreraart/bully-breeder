@@ -1,362 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bully Breeder Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bully Breeder</title>
 
 <style>
-  body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
 
-  h1 {
-    margin: 18px 0 5px;
-  }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
 
-  .subtitle {
-    color: #aaa;
-    margin-bottom: 20px;
-  }
+body{
+background:linear-gradient(to bottom,#fff7d6,#ffdff0,#dff4ff);
+min-height:100vh;
+padding:20px;
+text-align:center;
+color:#222;
+}
 
-  .app {
-    width: 95%;
-    max-width: 1250px;
-    margin: auto;
-  }
+h1{
+font-size:48px;
+color:#ff7b00;
+margin-bottom:5px;
+text-shadow:3px 3px 0 white;
+}
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
+.subtitle{
+font-weight:bold;
+margin-bottom:25px;
+color:#555;
+}
 
-  .card {
-    background: #1d1d1d;
-    border-radius: 18px;
-    padding: 14px;
-    box-shadow: 0 0 20px rgba(0,0,0,.4);
-  }
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+max-width:1300px;
+margin:auto;
+}
 
-  .card h2 {
-    margin: 5px 0 12px;
-  }
+.card{
+background:white;
+border-radius:28px;
+padding:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+border:5px solid white;
+}
 
-  .stage {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #f5f5f5;
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
-  }
+.male{
+background:linear-gradient(to bottom,#dff4ff,#ffffff);
+}
 
-  .layer {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-  }
+.female{
+background:linear-gradient(to bottom,#ffe1f1,#ffffff);
+}
 
-  button {
-    background: #ff8c00;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    font-size: 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 10px 5px 5px;
-  }
+.offspring{
+background:linear-gradient(to bottom,#fff0bc,#ffffff);
+}
 
-  button:hover {
-    background: #ffaa33;
-  }
+.card h2{
+margin-bottom:12px;
+font-size:30px;
+}
 
-  .breed-btn {
-    background: #e63946;
-    font-size: 18px;
-    padding: 14px 28px;
-    margin: 25px 0;
-  }
+.stage{
+width:100%;
+aspect-ratio:1/1;
+background:#fffdf5;
+border-radius:24px;
+position:relative;
+overflow:hidden;
+border:4px solid white;
+}
 
-  .info {
-    margin-top: 10px;
-    background: #111;
-    padding: 10px;
-    border-radius: 12px;
-    font-size: 13px;
-    line-height: 1.45;
-    min-height: 135px;
-  }
+.layer{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:contain;
+pointer-events:none;
+}
 
-  .badge {
-    display: inline-block;
-    background: #333;
-    padding: 4px 8px;
-    border-radius: 999px;
-    margin-bottom: 6px;
-    font-size: 12px;
-    color: #ddd;
-  }
+button{
+border:none;
+padding:15px 24px;
+border-radius:999px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+margin-top:14px;
+box-shadow:0 5px 0 rgba(0,0,0,.2);
+}
 
-  @media (max-width: 900px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
+button:active{
+transform:translateY(3px);
+}
+
+.maleBtn{
+background:linear-gradient(to bottom,#36b9ff,#0088dd);
+}
+
+.femaleBtn{
+background:linear-gradient(to bottom,#ff72ba,#e83b8f);
+}
+
+.breedBtn{
+background:linear-gradient(to bottom,#ff9e1b,#ff5e00);
+width:90%;
+font-size:20px;
+}
+
+.info{
+margin-top:12px;
+background:white;
+border-radius:20px;
+padding:12px;
+font-size:13px;
+line-height:1.6;
+text-align:left;
+box-shadow:inset 0 -4px 0 rgba(0,0,0,.05);
+}
+
+.badge{
+display:inline-block;
+padding:5px 12px;
+border-radius:999px;
+color:white;
+font-size:12px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.badgeMale{
+background:#0088dd;
+}
+
+.badgeFemale{
+background:#e83b8f;
+}
+
+.badgeOffspring{
+background:#ff7b00;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+border-bottom:1px dashed rgba(0,0,0,.1);
+padding:3px 0;
+}
+
+.inheritance{
+margin-top:10px;
+padding:8px;
+background:#fff3c8;
+border-radius:14px;
+text-align:center;
+font-weight:bold;
+color:#8a4a00;
+}
+
+@media(max-width:950px){
+
+.grid{
+grid-template-columns:1fr;
+max-width:520px;
+}
+
+h1{
+font-size:36px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🔥 Bully Breeder Demo 🔥</h1>
-<div class="subtitle">Create a male, create a female, then breed an offspring.</div>
+<h1>🐾 Bully Breeder 🐾</h1>
+<div class="subtitle">
+Create your male, create your female, then breed an offspring.
+</div>
 
-<div class="app">
+<div class="grid">
 
-  <div class="grid">
+<div class="card male">
 
-    <div class="card">
-      <h2>Male</h2>
-      <div class="stage" id="maleStage"></div>
-      <button onclick="createMale()">Random Male</button>
-      <div class="info" id="maleInfo">No male created yet.</div>
-    </div>
+<h2>♂ Male</h2>
 
-    <div class="card">
-      <h2>Female</h2>
-      <div class="stage" id="femaleStage"></div>
-      <button onclick="createFemale()">Random Female</button>
-      <div class="info" id="femaleInfo">No female created yet.</div>
-    </div>
+<div class="stage" id="maleStage"></div>
 
-    <div class="card">
-      <h2>Offspring</h2>
-      <div class="stage" id="offspringStage"></div>
-      <button class="breed-btn" onclick="breedOffspring()">Breed Offspring</button>
-      <div class="info" id="offspringInfo">Create both parents first.</div>
-    </div>
+<button class="maleBtn" onclick="createMale()">
+🎲 Random Male
+</button>
 
-  </div>
+<div class="info" id="maleInfo"></div>
+
+</div>
+
+<div class="card female">
+
+<h2>♀ Female</h2>
+
+<div class="stage" id="femaleStage"></div>
+
+<button class="femaleBtn" onclick="createFemale()">
+🎲 Random Female
+</button>
+
+<div class="info" id="femaleInfo"></div>
+
+</div>
+
+<div class="card offspring">
+
+<h2>⚡ Offspring</h2>
+
+<div class="stage" id="offspringStage"></div>
+
+<button class="breedBtn" onclick="breedOffspring()">
+❤️ Breed Offspring
+</button>
+
+<div class="info" id="offspringInfo">
+Create both parents first.
+</div>
+
+</div>
 
 </div>
 
 <script>
-  const colors = [
-    "black",
-    "chocolate",
-    "cream",
-    "grey",
-    "orange",
-    "red",
-    "white"
-  ];
 
-  const eyes = [
-    "eyes-blue",
-    "eyes-green",
-    "eyes-orange",
-    "eyes-red",
-    "eyes-yellow"
-  ];
+const colors=[
+"black",
+"chocolate",
+"cream",
+"grey",
+"orange",
+"red",
+"white"
+];
 
-  const noses = [
-    "nose-black",
-    "nose-chocolate",
-    "nose-grey",
-    "nose-pink",
-    "nose-red"
-  ];
+const eyes=[
+"eyes-blue",
+"eyes-green",
+"eyes-orange",
+"eyes-red",
+"eyes-yellow"
+];
 
-  const snouts = [
-    "snout",
-    "snout-colmillos",
-    "snout-smirk",
-    "snout-tongue"
-  ];
+const noses=[
+"nose-black",
+"nose-chocolate",
+"nose-grey",
+"nose-pink",
+"nose-red"
+];
 
-  const markBodies = [
-    null,
-    "mark-body-1",
-    "mark-body-2",
-    "mark-body-3",
-    "mark-body-4",
-    "mark-body-5"
-  ];
+const snouts=[
+"snout",
+"snout-colmillos",
+"snout-smirk",
+"snout-tongue"
+];
 
-  const markHeads = [
-    null,
-    "mark-head-1",
-    "mark-head-2",
-    "mark-head-3",
-    "mark-head-4",
-    "mark-head-5",
-    "mark-head-6",
-    "mark-head-7"
-  ];
+const markBodies=[
+null,
+"mark-body-1",
+"mark-body-2",
+"mark-body-3",
+"mark-body-4",
+"mark-body-5"
+];
 
-  const markTails = [
-    null,
-    "mark-tail"
-  ];
+const markHeads=[
+null,
+"mark-head-1",
+"mark-head-2",
+"mark-head-3",
+"mark-head-4",
+"mark-head-5",
+"mark-head-6",
+"mark-head-7"
+];
 
-  const earTypes = [
-    "ears",
-    "cropped-ears"
-  ];
+const markTails=[
+null,
+"mark-tail"
+];
 
-  let maleDog = null;
-  let femaleDog = null;
-  let offspringDog = null;
+const earTypes=[
+"ears",
+"cropped-ears"
+];
 
-  function pick(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
+let maleDog=null;
+let femaleDog=null;
+let offspringDog=null;
 
-  function inherit(maleTrait, femaleTrait, randomOptions) {
-    const roll = Math.random();
+function pick(arr){
+return arr[Math.floor(Math.random()*arr.length)];
+}
 
-    if (roll < 0.45) {
-      return maleTrait;
-    }
+function inherit(maleTrait,femaleTrait,randomOptions){
 
-    if (roll < 0.90) {
-      return femaleTrait;
-    }
+const roll=Math.random();
 
-    return pick(randomOptions);
-  }
+if(roll<0.45)return maleTrait;
 
-  function createRandomDog(gender) {
-    const color = pick(colors);
+if(roll<0.90)return femaleTrait;
 
-    return {
-      gender: gender,
-      color: color,
-      earType: pick(earTypes),
-      eye: pick(eyes),
-      nose: pick(noses),
-      snout: pick(snouts),
-      markBody: pick(markBodies),
-      markHead: pick(markHeads),
-      markTail: pick(markTails)
-    };
-  }
+return pick(randomOptions);
 
-  function createOffspring(male, female) {
-    return {
-      gender: pick(["male", "female"]),
-      color: inherit(male.color, female.color, colors),
-      earType: inherit(male.earType, female.earType, earTypes),
-      eye: inherit(male.eye, female.eye, eyes),
-      nose: inherit(male.nose, female.nose, noses),
-      snout: inherit(male.snout, female.snout, snouts),
-      markBody: inherit(male.markBody, female.markBody, markBodies),
-      markHead: inherit(male.markHead, female.markHead, markHeads),
-      markTail: inherit(male.markTail, female.markTail, markTails)
-    };
-  }
+}
 
-  function addLayer(stageId, folder, fileName) {
-    if (!fileName) return;
+function createRandomDog(gender){
 
-    const img = document.createElement("img");
-    img.className = "layer";
-    img.src = `${folder}/${fileName}.png`;
-    img.alt = fileName;
+return{
+gender,
+color:pick(colors),
+earType:pick(earTypes),
+eye:pick(eyes),
+nose:pick(noses),
+snout:pick(snouts),
+markBody:pick(markBodies),
+markHead:pick(markHeads),
+markTail:pick(markTails)
+};
 
-    img.onerror = () => {
-      console.warn("Missing layer:", img.src);
-      img.style.display = "none";
-    };
+}
 
-    document.getElementById(stageId).appendChild(img);
-  }
+function createOffspring(male,female){
 
-  function renderDog(stageId, dog) {
-    const stage = document.getElementById(stageId);
-    stage.innerHTML = "";
+return{
+gender:pick(["male","female"]),
+color:inherit(male.color,female.color,colors),
+earType:inherit(male.earType,female.earType,earTypes),
+eye:inherit(male.eye,female.eye,eyes),
+nose:inherit(male.nose,female.nose,noses),
+snout:inherit(male.snout,female.snout,snouts),
+markBody:inherit(male.markBody,female.markBody,markBodies),
+markHead:inherit(male.markHead,female.markHead,markHeads),
+markTail:inherit(male.markTail,female.markTail,markTails)
+};
 
-    if (!dog) return;
+}
 
-    const color = dog.color;
+function addLayer(stageId,folder,fileName){
 
-    // ORDEN CORRECTO DE CAPAS
-    addLayer(stageId, "tail", `tail-${color}`);
-    addLayer(stageId, "tail", dog.markTail);
+if(!fileName)return;
 
-    addLayer(stageId, "body", `body-${color}`);
-    addLayer(stageId, "mark body", dog.markBody);
+const img=document.createElement("img");
 
-    if (dog.earType === "ears") {
-      addLayer(stageId, "ears", `ears-${color}`);
-    } else {
-      addLayer(stageId, "cropped ears", `cropped-ears-${color}`);
-    }
+img.className="layer";
 
-    addLayer(stageId, "head", `head-${color}`);
-    addLayer(stageId, "mark head", dog.markHead);
+img.src=`${folder}/${fileName}.png`;
 
-    addLayer(stageId, "eyes", dog.eye);
-    addLayer(stageId, "snout", dog.snout);
-    addLayer(stageId, "nose", dog.nose);
-  }
+img.onerror=()=>{
+img.style.display="none";
+};
 
-  function dogInfo(dog, label) {
-    if (!dog) return `${label} not created yet.`;
+document.getElementById(stageId).appendChild(img);
 
-    return `
-      <span class="badge">${label}</span><br>
-      <strong>Gender:</strong> ${dog.gender}<br>
-      <strong>Color:</strong> ${dog.color}<br>
-      <strong>Ears:</strong> ${dog.earType}<br>
-      <strong>Eyes:</strong> ${dog.eye}<br>
-      <strong>Nose:</strong> ${dog.nose}<br>
-      <strong>Snout:</strong> ${dog.snout}<br>
-      <strong>Body Mark:</strong> ${dog.markBody || "none"}<br>
-      <strong>Head Mark:</strong> ${dog.markHead || "none"}<br>
-      <strong>Tail Mark:</strong> ${dog.markTail || "none"}
-    `;
-  }
+}
 
-  function createMale() {
-    maleDog = createRandomDog("male");
-    renderDog("maleStage", maleDog);
-    document.getElementById("maleInfo").innerHTML = dogInfo(maleDog, "Male");
-  }
+function renderDog(stageId,dog){
 
-  function createFemale() {
-    femaleDog = createRandomDog("female");
-    renderDog("femaleStage", femaleDog);
-    document.getElementById("femaleInfo").innerHTML = dogInfo(femaleDog, "Female");
-  }
+const stage=document.getElementById(stageId);
 
-  function breedOffspring() {
-    if (!maleDog || !femaleDog) {
-      document.getElementById("offspringInfo").innerHTML = "Create both parents first.";
-      return;
-    }
+stage.innerHTML="";
 
-    offspringDog = createOffspring(maleDog, femaleDog);
-    renderDog("offspringStage", offspringDog);
+if(!dog)return;
 
-    document.getElementById("offspringInfo").innerHTML = `
-      ${dogInfo(offspringDog, "Offspring")}
-      <br><br>
-      <strong>Inheritance:</strong> 45% Male / 45% Female / 10% Random
-    `;
-  }
+const color=dog.color;
 
-  createMale();
-  createFemale();
+addLayer(stageId,"tail",`tail-${color}`);
+addLayer(stageId,"tail",dog.markTail);
+
+addLayer(stageId,"body",`body-${color}`);
+addLayer(stageId,"mark body",dog.markBody);
+
+if(dog.earType==="ears"){
+addLayer(stageId,"ears",`ears-${color}`);
+}else{
+addLayer(stageId,"cropped ears",`cropped-ears-${color}`);
+}
+
+addLayer(stageId,"head",`head-${color}`);
+addLayer(stageId,"mark head",dog.markHead);
+
+addLayer(stageId,"eyes",dog.eye);
+
+addLayer(stageId,"snout",dog.snout);
+
+addLayer(stageId,"nose",dog.nose);
+
+}
+
+function clean(value){
+
+if(!value)return"none";
+
+return value.replaceAll("-"," ");
+
+}
+
+function infoHTML(dog,label,badgeClass){
+
+return`
+
+<div class="badge ${badgeClass}">
+${label}
+</div>
+
+<div class="row"><strong>Gender</strong><span>${clean(dog.gender)}</span></div>
+
+<div class="row"><strong>Color</strong><span>${clean(dog.color)}</span></div>
+
+<div class="row"><strong>Ears</strong><span>${clean(dog.earType)}</span></div>
+
+<div class="row"><strong>Eyes</strong><span>${clean(dog.eye)}</span></div>
+
+<div class="row"><strong>Nose</strong><span>${clean(dog.nose)}</span></div>
+
+<div class="row"><strong>Snout</strong><span>${clean(dog.snout)}</span></div>
+
+<div class="row"><strong>Body Mark</strong><span>${clean(dog.markBody)}</span></div>
+
+<div class="row"><strong>Head Mark</strong><span>${clean(dog.markHead)}</span></div>
+
+<div class="row"><strong>Tail Mark</strong><span>${clean(dog.markTail)}</span></div>
+
+`;
+
+}
+
+function createMale(){
+
+maleDog=createRandomDog("male");
+
+renderDog("maleStage",maleDog);
+
+document.getElementById("maleInfo").innerHTML=
+infoHTML(maleDog,"Male","badgeMale");
+
+}
+
+function createFemale(){
+
+femaleDog=createRandomDog("female");
+
+renderDog("femaleStage",femaleDog);
+
+document.getElementById("femaleInfo").innerHTML=
+infoHTML(femaleDog,"Female","badgeFemale");
+
+}
+
+function breedOffspring(){
+
+if(!maleDog||!femaleDog)return;
+
+offspringDog=createOffspring(maleDog,femaleDog);
+
+renderDog("offspringStage",offspringDog);
+
+document.getElementById("offspringInfo").innerHTML=
+infoHTML(offspringDog,"Offspring","badgeOffspring")+
+
+`<div class="inheritance">
+45% Male / 45% Female / 10% Random
+</div>`;
+
+}
+
+createMale();
+createFemale();
+
 </script>
 
 </body>
