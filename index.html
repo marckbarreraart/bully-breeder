@@ -11,6 +11,9 @@ body{min-height:100vh;padding:18px;background:linear-gradient(180deg,#fff4cc,#ff
 h1{font-size:46px;color:#ff7800;text-shadow:3px 3px 0 #fff;margin-bottom:4px}
 .subtitle{font-weight:bold;color:#5b4b3b;margin-bottom:18px}
 .topActions{max-width:1250px;margin:0 auto 16px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.wallet{max-width:1250px;margin:0 auto 12px;background:#fff;border:4px solid #fff;border-radius:24px;padding:12px;box-shadow:0 10px 20px rgba(0,0,0,.12);display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+.coinPill{background:linear-gradient(#ffe680,#ffb000);color:#5b3500;border-radius:999px;padding:10px 18px;font-weight:1000;box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+.priceTag{display:inline-block;background:#fff3b0;color:#6b3d00;border-radius:999px;padding:5px 10px;font-weight:900;margin-top:5px;font-size:12px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1250px;margin:auto}
 .card{background:#fff;border:5px solid #fff;border-radius:28px;padding:14px;box-shadow:0 14px 28px rgba(0,0,0,.14)}
 .male{background:linear-gradient(#dff4ff,#fff)}
@@ -29,12 +32,15 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
 .clearBtn{background:linear-gradient(#777,#333)}
 .profileBtn{background:linear-gradient(#8e7cff,#5f45d9)}
 .homeBtn{background:linear-gradient(#ffc83d,#ff8a00)}
+.marketBtn{background:linear-gradient(#22c55e,#087f3a)}
+.sellBtn{background:linear-gradient(#f97316,#c2410c)}
 .renameBtn{background:linear-gradient(#7ddfff,#229ad6)}
 .useBtn{background:linear-gradient(#36d399,#079669)}
 .deleteBtn{background:linear-gradient(#ff5f6d,#cc1730)}
 .info{margin-top:10px;background:#fff;border-radius:18px;padding:12px;font-size:13px;line-height:1.55;text-align:left;box-shadow:inset 0 -4px 0 rgba(0,0,0,.05)}
 .badge{display:inline-block;padding:5px 12px;border-radius:999px;color:#fff;font-size:12px;font-weight:900;margin-bottom:8px}
 .badgeMale{background:#0088dd}.badgeFemale{background:#e83b8f}.badgeOffspring{background:#ff7800}
+.badgeCommon{background:#777}.badgeUncommon{background:#159947}.badgeRare{background:#0876d8}.badgeEpic{background:#7c3aed}.badgeLegendary{background:#f59e0b;color:#3b2200}
 .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed rgba(0,0,0,.12);padding:3px 0}
 .row span{font-weight:bold;text-align:right}
 .inheritance{margin-top:10px;padding:9px;background:#fff1ba;border-radius:14px;text-align:center;font-weight:900;color:#8a4a00}
@@ -46,9 +52,21 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
 .kennelDog{background:#fff;border-radius:18px;padding:10px;box-shadow:0 8px 16px rgba(0,0,0,.1)}
 .kennelStage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:14px;position:relative;overflow:hidden}
 .kennelName{font-weight:900;margin-top:8px;color:#333}
+.rarityLine{font-size:12px;font-weight:900;margin-top:4px}
+.rarityCommon{color:#777}.rarityUncommon{color:#159947}.rarityRare{color:#0876d8}.rarityEpic{color:#7c3aed}.rarityLegendary{color:#c77700}
+.glowRare{box-shadow:0 0 0 3px rgba(8,118,216,.25),0 8px 16px rgba(0,0,0,.1)}
+.glowEpic{box-shadow:0 0 18px rgba(124,58,237,.45),0 8px 16px rgba(0,0,0,.1)}
+.glowLegendary{box-shadow:0 0 25px rgba(245,158,11,.65),0 8px 16px rgba(0,0,0,.1)}
 .sexMale{color:#0088dd;font-weight:900}
 .sexFemale{color:#e83b8f;font-weight:900}
 .kennelActions{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px}
+.marketPanel{max-width:1250px;margin:24px auto 0;background:linear-gradient(180deg,#eafff2,#ffffff);border:5px solid #fff;border-radius:32px;padding:16px;box-shadow:0 14px 28px rgba(0,0,0,.14);display:none}
+.marketPanel.active{display:block}
+.marketTabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0 14px}
+.marketGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px}
+.marketDog{background:#fff;border-radius:20px;padding:10px;box-shadow:0 8px 16px rgba(0,0,0,.1)}
+.marketStage{width:100%;aspect-ratio:1/1;background:#fffdf5;border-radius:16px;position:relative;overflow:hidden;border:3px solid #fff}
+.marketNote{background:#fff8cc;border-radius:18px;padding:10px;margin:10px auto;max-width:800px;font-weight:900;color:#6b3d00}
 .modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999;padding:18px}
 .modal{width:min(760px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#fff,#fff8df);border:5px solid #fff;border-radius:30px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative}
 .closeBtn{position:absolute;right:12px;top:10px;background:linear-gradient(#777,#333);padding:8px 12px;margin:0}
@@ -73,10 +91,15 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
 .sleepBtn{background:linear-gradient(#6b7280,#374151)}
 .homeEmpty{font-weight:900;color:#6b4c00;background:#fff7ca;border-radius:18px;padding:18px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;border-radius:999px;padding:12px 18px;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.25);display:none;z-index:1000}
+.renameInput{width:100%;font-size:20px;font-weight:900;padding:14px 16px;border-radius:18px;border:3px solid #ffd36d;outline:none;margin:14px 0;text-align:center;background:#fffdf5}
+.renameInput:focus{border-color:#ff8a00;box-shadow:0 0 0 4px rgba(255,138,0,.15)}
+.renameModalActions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.cancelBtn{background:linear-gradient(#777,#333)}
 @media(max-width:950px){
   .grid{grid-template-columns:1fr;max-width:520px}
   .homeGrid,.profileLayout{grid-template-columns:1fr}
   .homeGrid{max-width:520px;margin:auto}
+  .marketGrid{grid-template-columns:1fr}
   h1{font-size:36px}
 }
 </style>
@@ -85,11 +108,17 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
 <body>
 
 <h1>🐾 Bully Breeder 🐾</h1>
-<div class="subtitle">Create your male, create your female, breed offspring, save them, and raise them in Home Mode.</div>
+<div class="subtitle">Create your male, create your female, breed offspring, save them, raise them, buy, sell, and rent studs.</div>
+
+<div class="wallet">
+  <div class="coinPill">🪙 Bully Coins: <span id="coinAmount">0</span></div>
+  <button class="smallBtn marketBtn" onclick="toggleMarketplace()">🛒 Marketplace</button>
+</div>
 
 <div class="topActions">
   <button class="homeBtn" onclick="toggleHomeMode()">🏠 Home Mode</button>
   <button class="profileBtn" onclick="openDogProfile(offspringDog,'Offspring')">👁 View Offspring</button>
+  <button class="sellBtn" onclick="sellOffspring()">💰 Sell Offspring</button>
 </div>
 
 <div class="grid">
@@ -123,6 +152,7 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
     <div class="nameLine" id="offspringNameLine">No offspring yet</div>
     <button class="breedBtn" onclick="breedOffspring()">❤️ Breed Offspring</button>
     <button class="saveBtn" onclick="saveOffspring()">💾 Save to Kennel</button>
+    <button class="sellBtn" onclick="sellOffspring()">💰 Sell Puppy</button>
     <div class="cardActions">
       <button class="smallBtn renameBtn" onclick="renameCurrentDog('offspring')">✏️ Rename</button>
       <button class="smallBtn profileBtn" onclick="openDogProfile(offspringDog,'Offspring')">👁 Profile</button>
@@ -135,6 +165,18 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
   <h2>🏠 Home Mode</h2>
   <div class="subtitle">Pick a saved dog from My Kennel, then feed, bathe, play, train, or let it sleep.</div>
   <div id="homeContent"></div>
+</div>
+
+<div class="marketPanel" id="marketPanel">
+  <h2>🛒 Bully Marketplace</h2>
+  <div class="marketNote">Fake market for now: buy males, buy females, or rent studs using Bully Coins. No real money.</div>
+  <div class="marketTabs">
+    <button class="smallBtn marketBtn" onclick="renderMarketplace('studRent')">💎 Studs for Rent</button>
+    <button class="smallBtn maleBtn" onclick="renderMarketplace('maleSale')">♂ Males for Sale</button>
+    <button class="smallBtn femaleBtn" onclick="renderMarketplace('femaleSale')">♀ Females for Sale</button>
+    <button class="smallBtn clearBtn" onclick="refreshMarket()">🔄 Refresh Market</button>
+  </div>
+  <div class="marketGrid" id="marketGrid"></div>
 </div>
 
 <div class="kennel">
@@ -157,6 +199,19 @@ button.smallBtn{font-size:12px;padding:9px 12px;margin:5px 2px;box-shadow:0 4px 
   </div>
 </div>
 
+<div class="modalBackdrop" id="renameModal">
+  <div class="modal" style="max-width:430px">
+    <button class="closeBtn smallBtn" onclick="closeRenameModal()">✖</button>
+    <h2 id="renameTitle">Rename Dog</h2>
+    <div class="subtitle">Write the new name and save it.</div>
+    <input class="renameInput" id="renameInput" type="text" maxlength="28" placeholder="Dog name">
+    <div class="renameModalActions">
+      <button class="saveBtn" onclick="confirmRename()">💾 Save Name</button>
+      <button class="cancelBtn" onclick="closeRenameModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -168,6 +223,17 @@ const markBodies=[null,"mark-body-1","mark-body-2","mark-body-3","mark-body-4","
 const markHeads=[null,"mark-head-1","mark-head-2","mark-head-3","mark-head-4","mark-head-5","mark-head-6","mark-head-7"];
 const markTails=[null,"mark-tail"];
 const earTypes=["ears","cropped-ears"];
+
+const STARTING_COINS=1000;
+const BREED_COST=50;
+const MARKET_REFRESH_COST=25;
+const rarityTable=[
+  {key:"Common",chance:60,value:100,mult:1},
+  {key:"Uncommon",chance:25,value:250,mult:2.5},
+  {key:"Rare",chance:10,value:750,mult:7.5},
+  {key:"Epic",chance:4,value:2000,mult:20},
+  {key:"Legendary",chance:1,value:10000,mult:100}
+];
 
 const prettyNames={
 "black":"Shadow Black","chocolate":"Chocolate Boss","cream":"Cream Beast","grey":"Blue Grey","orange":"Fire Orange","red":"Red Clay","white":"Snow White",
@@ -184,6 +250,9 @@ const prettyNames={
 const DEFAULT_STATS={hunger:70,happiness:70,hygiene:70,energy:70,strength:25};
 let maleDog=null,femaleDog=null,offspringDog=null;
 let homeDogId=null;
+let renameTarget=null;
+let coins=STARTING_COINS;
+let currentMarketTab="studRent";
 
 function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
 function clean(v){if(!v)return"none";return prettyNames[v]||String(v).replaceAll("-"," ")}
@@ -191,10 +260,42 @@ function clamp(n){return Math.max(0,Math.min(100,Number(n)||0))}
 function inherit(m,f,opts){const r=Math.random();if(r<.45)return m;if(r<.90)return f;return pick(opts)}
 function dogId(){return "dog-"+Date.now()+"-"+Math.floor(Math.random()*999999)}
 function defaultStats(){return {...DEFAULT_STATS}}
+function rollRarity(boost=0){
+  const roll=Math.random()*100;
+  const legendaryChance=1+boost;
+  const epicChance=4+boost*1.5;
+  const rareChance=10+boost*2;
+  if(roll<legendaryChance)return "Legendary";
+  if(roll<legendaryChance+epicChance)return "Epic";
+  if(roll<legendaryChance+epicChance+rareChance)return "Rare";
+  if(roll<legendaryChance+epicChance+rareChance+25)return "Uncommon";
+  return "Common";
+}
+function rarityInfo(rarity){return rarityTable.find(r=>r.key===rarity)||rarityTable[0]}
+function rarityClass(rarity){return "rarity"+(rarity||"Common")}
+function badgeRarity(rarity){return "badge"+(rarity||"Common")}
+function stageGlow(rarity){
+  if(rarity==="Legendary")return "glowLegendary";
+  if(rarity==="Epic")return "glowEpic";
+  if(rarity==="Rare")return "glowRare";
+  return "";
+}
+function dogValue(dog){return Math.round(rarityInfo(dog.rarity).value + (dog.stats?.strength||0)*3)}
+function studFee(dog){return Math.round(dogValue(dog)*0.35)}
+function buyPrice(dog){return Math.round(dogValue(dog)*1.4)}
+function renderCoins(){const el=document.getElementById("coinAmount");if(el)el.textContent=coins}
+function spendCoins(amount){
+  if(coins<amount){showToast("Not enough Bully Coins.");return false}
+  coins-=amount;saveEconomy();renderCoins();return true
+}
+function addCoins(amount){coins+=amount;saveEconomy();renderCoins()}
+function saveEconomy(){localStorage.setItem("bullyCoins",String(coins))}
+function loadEconomy(){coins=Number(localStorage.getItem("bullyCoins")||STARTING_COINS);if(!Number.isFinite(coins))coins=STARTING_COINS;renderCoins()}
 function ensureDog(dog){
   if(!dog)return null;
   if(!dog.id)dog.id=dogId();
   if(!dog.name)dog.name=dog.gender==="female"?"Female":"Male";
+  if(!dog.rarity)dog.rarity=rollRarity();
   if(!dog.stats)dog.stats=defaultStats();
   dog.stats={
     hunger:clamp(dog.stats.hunger ?? 70),
@@ -210,14 +311,16 @@ function statLabel(key){
 }
 
 function createRandomDog(gender,name){
-return ensureDog({id:dogId(),name:name||(gender==="male"?"Male":"Female"),gender,color:pick(colors),earType:pick(earTypes),eye:pick(eyes),nose:pick(noses),snout:pick(snouts),markBody:pick(markBodies),markHead:pick(markHeads),markTail:pick(markTails),stats:defaultStats()});
+return ensureDog({id:dogId(),name:name||(gender==="male"?"Male":"Female"),gender,rarity:rollRarity(),color:pick(colors),earType:pick(earTypes),eye:pick(eyes),nose:pick(noses),snout:pick(snouts),markBody:pick(markBodies),markHead:pick(markHeads),markTail:pick(markTails),stats:defaultStats()});
 }
 
 function createOffspring(male,female){
+const boost=(rarityInfo(male.rarity).mult+rarityInfo(female.rarity).mult)/80;
 return ensureDog({
 id:dogId(),
 name:"Offspring",
 gender:pick(["male","female"]),
+rarity:rollRarity(boost),
 color:inherit(male.color,female.color,colors),
 earType:inherit(male.earType,female.earType,earTypes),
 eye:inherit(male.eye,female.eye,eyes),
@@ -266,6 +369,8 @@ ensureDog(dog);
 return`
 <div class="badge ${badge}">${label}</div>
 <div class="row"><strong>Name</strong><span>${dog.name}</span></div>
+<div class="row"><strong>Rarity</strong><span class="${rarityClass(dog.rarity)}">${dog.rarity}</span></div>
+<div class="row"><strong>Value</strong><span>🪙 ${dogValue(dog)}</span></div>
 <div class="row"><strong>Gender</strong><span>${clean(dog.gender)}</span></div>
 <div class="row"><strong>Color</strong><span>${clean(dog.color)}</span></div>
 <div class="row"><strong>Ears</strong><span>${clean(dog.earType)}</span></div>
@@ -316,7 +421,7 @@ document.getElementById("offspringNameLine").textContent=offspringDog?offspringD
 
 document.getElementById("maleInfo").innerHTML=maleDog?infoHTML(maleDog,"Male","badgeMale"):"";
 document.getElementById("femaleInfo").innerHTML=femaleDog?infoHTML(femaleDog,"Female","badgeFemale"):"";
-document.getElementById("offspringInfo").innerHTML=offspringDog?infoHTML(offspringDog,"Offspring","badgeOffspring")+`<div class="inheritance">45% Male / 45% Female / 10% Random</div>`:"Create both parents first.";
+document.getElementById("offspringInfo").innerHTML=offspringDog?infoHTML(offspringDog,"Offspring","badgeOffspring")+`<div class="inheritance">45% Male / 45% Female / 10% Random<br>Breeding Cost: 🪙 ${BREED_COST}</div>`:`Create both parents first.<div class="inheritance">Breeding Cost: 🪙 ${BREED_COST}</div>`;
 saveBreederState();
 }
 
@@ -334,10 +439,11 @@ showToast("New female created.");
 
 function breedOffspring(){
 if(!maleDog||!femaleDog){offspringInfo.innerHTML="Create both parents first.";return}
+if(!spendCoins(BREED_COST))return;
 offspringDog=createOffspring(maleDog,femaleDog);
 offspringDog.name=offspringDog.gender==="male"?"Male Offspring":"Female Offspring";
 renderMain();
-showToast(`${offspringDog.name} created.`);
+showToast(`${offspringDog.name} created for ${BREED_COST} coins.`);
 }
 
 function renameCurrentDog(type){
@@ -346,12 +452,7 @@ if(type==="male")dog=maleDog;
 if(type==="female")dog=femaleDog;
 if(type==="offspring")dog=offspringDog;
 if(!dog){alert("No dog here yet.");return}
-const newName=prompt("New name:",dog.name||"Dog");
-if(!newName)return;
-dog.name=newName.trim();
-renderMain();
-renderHome();
-showToast("Name updated.");
+openRenameModal({kind:"current",type});
 }
 
 function getKennel(){
@@ -386,10 +487,11 @@ const kennel=getKennel();
 if(kennel.length===0){grid.innerHTML="<strong>No saved dogs yet.</strong>";renderHome();return}
 kennel.forEach((dog,i)=>{
 const box=document.createElement("div");
-box.className="kennelDog";
+box.className=`kennelDog ${stageGlow(dog.rarity)}`;
 box.innerHTML=`
 <div class="kennelStage" id="kennelDog${i}"></div>
 <div class="kennelName">${dog.name}</div>
+<div class="rarityLine ${rarityClass(dog.rarity)}">${dog.rarity} • Value 🪙 ${dogValue(dog)}</div>
 <small>${dog.gender==="male"?"♂ Male":"♀ Female"} • ${clean(dog.color)} • ${clean(dog.eye)}</small>
 <div class="kennelActions">
   <button class="smallBtn profileBtn" onclick="openKennelProfile(${i})">👁 View</button>
@@ -408,12 +510,72 @@ function renameSavedDog(i){
 const kennel=getKennel();
 const dog=kennel[i];
 if(!dog)return;
-const newName=prompt("New saved dog name:",dog.name||"Dog");
-if(!newName)return;
-dog.name=newName.trim();
-setKennel(kennel);
-renderKennel();
-showToast("Saved dog renamed.");
+openRenameModal({kind:"kennel",index:i});
+}
+
+function openRenameModal(target){
+renameTarget=target;
+let dog=null;
+
+if(target.kind==="current"){
+  if(target.type==="male")dog=maleDog;
+  if(target.type==="female")dog=femaleDog;
+  if(target.type==="offspring")dog=offspringDog;
+}
+
+if(target.kind==="kennel"){
+  const kennel=getKennel();
+  dog=kennel[target.index];
+}
+
+if(!dog)return;
+
+document.getElementById("renameTitle").textContent=`Rename ${dog.name||"Dog"}`;
+const input=document.getElementById("renameInput");
+input.value=dog.name||"";
+document.getElementById("renameModal").style.display="flex";
+
+setTimeout(()=>{
+  input.focus();
+  input.select();
+},120);
+}
+
+function closeRenameModal(){
+document.getElementById("renameModal").style.display="none";
+renameTarget=null;
+}
+
+function confirmRename(){
+const input=document.getElementById("renameInput");
+const newName=(input.value||"").trim();
+if(!newName){
+  showToast("Write a name first.");
+  return;
+}
+if(!renameTarget)return;
+
+if(renameTarget.kind==="current"){
+  if(renameTarget.type==="male"&&maleDog)maleDog.name=newName;
+  if(renameTarget.type==="female"&&femaleDog)femaleDog.name=newName;
+  if(renameTarget.type==="offspring"&&offspringDog)offspringDog.name=newName;
+  renderMain();
+  renderHome();
+  showToast("Name updated.");
+}
+
+if(renameTarget.kind==="kennel"){
+  const kennel=getKennel();
+  if(kennel[renameTarget.index]){
+    kennel[renameTarget.index].name=newName;
+    setKennel(kennel);
+    renderKennel();
+    renderHome();
+    showToast("Saved dog renamed.");
+  }
+}
+
+closeRenameModal();
 }
 
 function setSavedAsMale(i){
@@ -475,6 +637,127 @@ setKennel(kennel);
 saveBreederState();
 renderKennel();
 showToast("Dog deleted.");
+}
+
+function sellOffspring(){
+if(!offspringDog){alert("No offspring to sell.");return}
+const value=dogValue(offspringDog);
+if(!confirm(`Sell ${offspringDog.name} for ${value} Bully Coins?`))return;
+addCoins(value);
+offspringDog=null;
+renderMain();
+showToast(`Sold for ${value} coins.`);
+}
+
+function getMarket(){
+let market=JSON.parse(localStorage.getItem("bullyMarket")||"null");
+if(!market||!Array.isArray(market)||market.length===0){
+  market=generateMarket();
+  setMarket(market);
+}
+return market.map(item=>({...item,dog:ensureDog(item.dog)}));
+}
+function setMarket(market){localStorage.setItem("bullyMarket",JSON.stringify(market))}
+function marketName(gender,rarity,i){
+  const maleNames=["King Brutus","Demon Tank","Blue Titan","Macho Boss","Big Draco","Royal Dax","Venom Stud","Ghost King"];
+  const femaleNames=["Queen Nova","Lady Anubis","Pink Storm","Luna Boss","Ruby Queen","Ghost Mama","Bella Venom","Xena Star"];
+  const base=gender==="male"?maleNames[i%maleNames.length]:femaleNames[i%femaleNames.length];
+  return `${base} ${rarity==="Legendary"?"⭐":rarity==="Epic"?"🔥":rarity==="Rare"?"💎":""}`;
+}
+function createMarketDog(gender,forceRarity,i){
+  const dog=createRandomDog(gender,marketName(gender,forceRarity||"Common",i));
+  dog.rarity=forceRarity||rollRarity(0.8);
+  dog.stats.strength=clamp(dog.stats.strength+Math.round(rarityInfo(dog.rarity).mult*2));
+  return dog;
+}
+function generateMarket(){
+  const market=[];
+  const rarities=["Common","Uncommon","Rare","Epic","Legendary"];
+  for(let i=0;i<8;i++){
+    const r=i===7?"Legendary":i===6?"Epic":i>=4?"Rare":i>=2?"Uncommon":"Common";
+    const dog=createMarketDog("male",r,i);
+    market.push({type:"studRent",dog,price:studFee(dog)});
+  }
+  for(let i=0;i<6;i++){
+    const r=rarities[Math.min(i,rarities.length-1)];
+    const dog=createMarketDog("male",r,i+20);
+    market.push({type:"maleSale",dog,price:buyPrice(dog)});
+  }
+  for(let i=0;i<6;i++){
+    const r=rarities[Math.min(i,rarities.length-1)];
+    const dog=createMarketDog("female",r,i+40);
+    market.push({type:"femaleSale",dog,price:buyPrice(dog)});
+  }
+  return market;
+}
+function toggleMarketplace(){
+const panel=document.getElementById("marketPanel");
+panel.classList.toggle("active");
+renderMarketplace(currentMarketTab);
+if(panel.classList.contains("active"))panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderMarketplace(tab="studRent"){
+currentMarketTab=tab;
+const grid=document.getElementById("marketGrid");
+if(!grid)return;
+const market=getMarket().filter(item=>item.type===tab);
+grid.innerHTML="";
+market.forEach((item,i)=>{
+  const originalIndex=getMarket().findIndex(m=>m.dog.id===item.dog.id);
+  const dog=item.dog;
+  const card=document.createElement("div");
+  card.className=`marketDog ${stageGlow(dog.rarity)}`;
+  const action=item.type==="studRent"
+    ? `<button class="smallBtn marketBtn" onclick="rentMarketStud(${originalIndex})">💎 Rent Stud</button>`
+    : `<button class="smallBtn saveBtn" onclick="buyMarketDog(${originalIndex})">🛒 Buy Dog</button>`;
+  card.innerHTML=`
+    <div class="marketStage" id="marketDog${tab}${i}"></div>
+    <div class="kennelName">${dog.name}</div>
+    <div class="rarityLine ${rarityClass(dog.rarity)}">${dog.rarity}</div>
+    <small>${dog.gender==="male"?"♂ Male":"♀ Female"} • ${clean(dog.color)} • ${clean(dog.eye)}</small>
+    <div class="priceTag">🪙 ${item.price}</div>
+    <div class="kennelActions">
+      <button class="smallBtn profileBtn" onclick="openDogProfile(getMarket()[${originalIndex}].dog,'Market Dog')">👁 View</button>
+      ${action}
+    </div>`;
+  grid.appendChild(card);
+  renderDog(`marketDog${tab}${i}`,dog);
+});
+}
+function refreshMarket(){
+if(!spendCoins(MARKET_REFRESH_COST))return;
+setMarket(generateMarket());
+renderMarketplace(currentMarketTab);
+showToast(`Market refreshed for ${MARKET_REFRESH_COST} coins.`);
+}
+function buyMarketDog(index){
+const market=getMarket();
+const item=market[index];
+if(!item)return;
+if(!spendCoins(item.price))return;
+const kennel=getKennel();
+const bought=JSON.parse(JSON.stringify(item.dog));
+bought.id=dogId();
+bought.name=bought.name+" Jr.";
+kennel.push(ensureDog(bought));
+setKennel(kennel);
+renderKennel();
+showToast(`${bought.name} bought.`);
+}
+function rentMarketStud(index){
+const market=getMarket();
+const item=market[index];
+if(!item||item.type!=="studRent")return;
+if(!femaleDog){alert("You need a Female selected first.");return}
+if(!spendCoins(item.price))return;
+const stud=ensureDog(item.dog);
+offspringDog=createOffspring(stud,femaleDog);
+offspringDog.name=offspringDog.gender==="male"?"Market Stud Son":"Market Stud Daughter";
+maleDog=JSON.parse(JSON.stringify(stud));
+maleDog.gender="male";
+renderMain();
+renderMarketplace(currentMarketTab);
+showToast(`Stud rented. Offspring created.`);
 }
 
 function clearKennel(){
@@ -614,11 +897,22 @@ document.getElementById("profileModal").addEventListener("click",function(e){
 if(e.target===this)closeProfile();
 });
 
+document.getElementById("renameModal").addEventListener("click",function(e){
+if(e.target===this)closeRenameModal();
+});
+
+document.getElementById("renameInput").addEventListener("keydown",function(e){
+if(e.key==="Enter")confirmRename();
+if(e.key==="Escape")closeRenameModal();
+});
+
+loadEconomy();
 loadBreederState();
 if(!maleDog)maleDog=createRandomDog("male","Male");
 if(!femaleDog)femaleDog=createRandomDog("female","Female");
 renderMain();
 renderKennel();
+renderMarketplace(currentMarketTab);
 </script>
 </body>
 </html>
